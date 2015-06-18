@@ -36,7 +36,7 @@ sudo rm -rf $final_path
 sudo mkdir -p $final_path
 
 # Copy of sources
-sudo cp ../sources/* $final_path/
+sudo cp -a ../sources/* $final_path/
 
 # Set permissions
 sudo chmod 775 -R $final_path
