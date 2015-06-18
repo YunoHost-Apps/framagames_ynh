@@ -26,8 +26,8 @@
                     "en": "Choose a path for your Webapp",
                     "fr": "Choisissez un chemin pour votre Webapp"
                 },
-                "example": "/site",
-                "default": "/site"
+                "example": "/framagames",
+                "default": "/framagames"
             },
             {
                 "name": "is_public",
