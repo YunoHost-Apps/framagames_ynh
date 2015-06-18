@@ -1,0 +1,43 @@
+{
+    "name": "Framagames",
+    "id": "framagames",
+    "description": {
+        "en": "Set of games Framagames from Framasoft",
+        "fr": "Ensemble de jeux Framagames venant de Framasoft"
+    },
+    "maintainer": {
+        "name": "polytan02",
+        "email": "polytan02@mcgva.org"
+    },
+    "multi_instance": "true",
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "ask": {
+                    "en": "Choose a domain for your Webapp",
+                    "fr": "Choisissez un domaine pour votre Webapp"
+                },
+                "example": "domain.org"
+            },
+            {
+                "name": "path",
+                "ask": {
+                    "en": "Choose a path for your Webapp",
+                    "fr": "Choisissez un chemin pour votre Webapp"
+                },
+                "example": "/site",
+                "default": "/site"
+            },
+            {
+                "name": "is_public",
+                "ask": {
+                    "en": "Is it a public website ?",
+                    "fr": "Est-ce un site publique ?"
+                },
+                "choices": ["Yes", "No"],
+                "default": "Yes"
+            }
+        ]
+    }
+}

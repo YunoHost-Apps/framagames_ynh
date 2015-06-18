@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Retrieve arguments
+app=framagames
+
+#domain=$(sudo yunohost app setting $app domain)
+path=$(sudo yunohost app setting $app path)
+sitename=$(sudo yunohost app setting $app sitename)
+#user=$(sudo yunohost app setting $app user)
+is_public=$(sudo yunohost app setting $app is_public)
+final_path=$(sudo yunohost app setting $app final_path)
+
+# Modify Nginx configuration file and copy it to Nginx conf directory
+sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
+sed -i "s@FOLDERTOCHANGE@$final_path/@g" ../conf/nginx.conf
+sed -i "s@NAMETOCHANGE@$sitename@g" ../conf/nginx.conf
+sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$sitename.conf
+
+sed -i "s@NAMETOCHANGE@$sitename@g" ../conf/php-fpm.conf
+finalphpconf=/etc/php5/fpm/pool.d/$app.conf
+sudo cp ../conf/php-fpm.conf $finalphpconf
+sudo chown root: $finalphpconf
+sudo chmod 644 $finalphpconf
+
+# We copy sources again
+rm -rf /var/www/$app
+mkdir -p /var/www/$app
+cp -a ../sources/* /var/www/$app
+
+# We adjust permissions
+sudo chmod 775 -R /var/www/$app
+sudo chown -hR www-data:www-data /var/www/$app
+
+# Make app public if necessary
+sudo yunohost app setting $app is_public -v "$is_public"
+if [ "$is_public" = "Yes" ];
+then
+    sudo yunohost app setting $app skipped_uris -v "/"
+else
+    sudo yunohost app setting $app protected_uris -v "/"
+fi
+
+# Reload Nginx and regenerate SSOwat conf
+sudo servive php5-fpm reload
+sudo service nginx reload
+sudo yunohost app ssowatconf
