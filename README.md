@@ -1,5 +1,4 @@
-Set of games from Framagames
--------------------
+# Set of games from Framagames
 
-sources are from here : https://git.framasoft.org/framasoft/framagames.git
+sources are from here : [Framagames](https://git.framasoft.org/framasoft/framagames.git)
 
