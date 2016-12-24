@@ -127,7 +127,6 @@ sudo cp ../conf/nginx.conf $finalnginxconf
 # Modify php-fpm configuration file and copy it to php-fpm pool.d directory
 sed -i "s@NAMETOCHANGE@$app@g" ../conf/php-fpm.conf
 sed -i "s@FOLDERTOCHANGE@$final_path@g" ../conf/php-fpm.conf
-sed -i "s@USERTOCHANGE@$runninguser@g" ../conf/php-fpm.conf
 sudo cp ../conf/php-fpm.conf $finalphpconf
 sudo chown root: $finalphpconf
 sudo chmod 644 $finalphpconf
