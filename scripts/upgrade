@@ -32,15 +32,15 @@ sudo rm -rf $final_path
 sudo mkdir -p $final_path
 
 # We download the sources and go to latest revision
+URL=`sudo cat ../sources/source_url`;
+SHA1=`sudo cat ../sources/source_sha1`;
 sudo rm -rf ./gitsources
 sudo mkdir gitsources
 sudo chmod 777 gitsources
 # We get the repository address
-URL=`sudo cat ../sources/source_url`;
 sudo git clone $URL gitsources
 # We reset to the latest known revision
 cd gitsources
-SHA1=`sudo cat ../sources/source_sha1`;
 sudo git reset --hard $SHA1
 cd ..
 
