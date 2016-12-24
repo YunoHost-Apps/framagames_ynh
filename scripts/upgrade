@@ -39,9 +39,10 @@ sudo mkdir gitsources
 sudo chmod 777 gitsources
 # We get the repository address
 sudo git clone $URL gitsources
-# We reset to the latest known revision
+# We reset to the latest known revision and copy the files to final_path
 cd gitsources
 sudo git reset --hard $SHA1
+sudo cp -a * $final_path
 cd ..
 
 # Set permissions
