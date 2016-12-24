@@ -31,11 +31,17 @@ finalphpconf=$(ynh_app_setting_get $app finalphpconf)
 sudo rm -rf $final_path
 sudo mkdir -p $final_path
 
-# We download the sources and check the md5sum
-#cops_file=`sudo cat ../sources/source_file`;
-#sudo wget -nv -i ../sources/source_url -O $cops_file
-#sudo md5sum -c ../sources/source_md5 --status || (echo "Corrupt source" >&2 && false)
-#sudo unzip ${cops_file} -d $final_path
+# We download the sources and go to latest revision
+sudo rm -rf ./gitsources
+sudo mkdir gitsources
+# We get the repository address
+URL=`sudo cat ../sources/source_url`;
+sudo git clone $URL gitsources
+# We reset to the latest known revision
+sudo cd gitsources
+SHA1=`sudo cat ../sources/source_sha1`;
+git reset --hard $SHA1
+sudo cd ..
 
 # Set permissions
 sudo chmod 775 -R $final_path
