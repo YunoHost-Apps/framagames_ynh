@@ -1,7 +1,7 @@
 # Set of games from Framagames
 
 * Status
-Work in progress but should be fine
+</br>Work in progress but should be fine
 </br>Needs to be validated by package_checker
 </br>Package_linter is OK
 
