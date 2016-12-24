@@ -1,22 +1,41 @@
 #!/bin/bash
+#set -eu
 
-app=framagames
+# Charge les fonctions génériques habituellement utilisées dans le script
+#source fonctions
 
-#user=$(sudo yunohost app setting $app user)
-path=$(sudo yunohost app setting $app path)
-sitename=$(sudo yunohost app setting $app sitename)
-domain=$(sudo yunohost app setting $app domain)
-final_path=$(sudo yunohost app setting $app final_path)
+# Active trap pour arrêter le script si une erreur est détectée.
+#TRAP_ON
 
+# Source app helpers
+source /usr/share/yunohost/helpers
+
+# We retrieve app parameters
+app=$YNH_APP_INSTANCE_NAME
+
+# We check variables are not empty
+
+CHECK_VAR () {  # Vérifie que la variable n'est pas vide.
+# $1 = Variable à vérifier
+# $2 = Texte à afficher en cas d'erreur
+        test -n "$1" || (echo "$2" >&2 && false)
+}
+CHECK_VAR "$app" "app name not set"
+
+path=$(ynh_app_setting_get $app path)
+domain=$(ynh_app_setting_get $app domain)
+final_path=$(ynh_app_setting_get $app final_path)
+finalnginxconf=$(ynh_app_setting_get $app finalnginxconf)
+finalphpconf=$(ynh_app_setting_get $app finalphpconf)
 
 # Suppression du dossier de la webapp
 sudo rm -rf $final_path
 
 # Suppression de la config nginx de la webapp
-sudo rm -f /etc/nginx/conf.d/$domain.d/$sitename.conf
-sudo rm -f /etc/php5/fpm/pool.d/$app.conf
-sudo rm -rf /var/www/$app/
+sudo rm -f $finalnginxconf
+sudo rm -f $finalphpconf
 
-sudo service php5-fpm restart
+# We reload the services
+sudo service php5-fpm reload
 sudo service nginx reload
 sudo yunohost app ssowatconf
