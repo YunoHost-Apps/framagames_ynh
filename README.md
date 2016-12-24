@@ -1,8 +1,11 @@
 # Set of games from Framagames
 
-Work in progress !!
+* Status
+Work in progress but should be fine
+</br>Needs to be validated by package_checker
+</br>Package_linter is OK
 
-original sources are from here : [Framagames](https://git.framasoft.org/framasoft/framagames.git)
-In this depot we usqe the github copy
+* Sources
+</br>Original sources are from here : [Framagames](https://git.framasoft.org/framasoft/framagames.git)
+</br>In this depot we use the github copy for convenience reasons
 
-Not compliant with yunoohst 2.4 or Jenkins
