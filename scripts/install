@@ -103,6 +103,9 @@ sudo mkdir -p $final_path
 #sudo wget -nv -i ../sources/source_url -O $cops_file
 #sudo md5sum -c ../sources/source_md5 --status || (echo "Corrupt source" >&2 && false)
 #sudo unzip ${cops_file} -d $final_path
+#git clone $URL
+#cd $PROJECT_NAME
+#git reset --hard $SHA1
 
 # Set permissions
 sudo chmod 775 -R $final_path
