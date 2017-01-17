@@ -31,19 +31,14 @@ finalphpconf=$(ynh_app_setting_get $app finalphpconf)
 sudo rm -rf $final_path
 sudo mkdir -p $final_path
 
-# We download the sources and go to latest revision
-URL=`sudo cat ../sources/source_url`;
+# We download the sources and check the md5sum
 SHA1=`sudo cat ../sources/source_sha1`;
-sudo rm -rf ./gitsources
-sudo mkdir gitsources
-sudo chmod 777 gitsources
-# We get the repository address
-sudo git clone $URL gitsources
-# We reset to the latest known revision and copy the files to final_path
-cd gitsources
-sudo git reset --hard $SHA1
-sudo cp -a * $final_path
-cd ..
+sed -i "s@SHA1TOCHANGE@$SHA1@g" ../sources/source_url
+sed -i "s@SHA1TOCHANGE@$SHA1@g" ../sources/source_md5
+sudo wget -nv -i ../sources/source_url -O framagames-${SHA1}.zip
+sudo md5sum -c ../sources/source_md5 --status || (echo "Corrupt source" >&2 && false)
+sudo unzip framagames-${SHA1}.zip -d ../sources/
+sudo cp -a ../sources/framagames-${SHA1}/.* $final_path
 
 # Set permissions
 sudo chmod 775 -R $final_path
