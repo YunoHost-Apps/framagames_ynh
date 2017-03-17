@@ -3,7 +3,7 @@
 # Commentaire ignoré
     ; Manifest
         domain="$DOMAIN"    (DOMAIN)
-        path="$PATH"    (PATH)
+        path="/path"    (PATH)
         language="fr"
 	is_public="Yes"	(PUBLIC|public=Yes|private=No)
 #        password="$PASSWORD"    (PASSWORD)
