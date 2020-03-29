@@ -1,5 +1,7 @@
 # Set of games from Framagames
 
+[![Integration level](https://dash.yunohost.org/integration/framagames.svg)](https://dash.yunohost.org/appci/app/framagames) ![](https://ci-apps.yunohost.org/ci/badges/framagames.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/framagames.maintain.svg)
+
 * Status
 </br>Should be working fine
 </br>Needs to be validated by package_checker
