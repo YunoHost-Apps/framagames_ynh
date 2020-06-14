@@ -1,41 +1,53 @@
 #!/bin/bash
-#set -eu
 
-# Charge les fonctions génériques habituellement utilisées dans le script
-#source fonctions
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
 
-# Active trap pour arrêter le script si une erreur est détectée.
-#TRAP_ON
-
-# Source app helpers
+source _common.sh
 source /usr/share/yunohost/helpers
 
-# We retrieve app parameters
+#=================================================
+# LOAD SETTINGS
+#=================================================
+ynh_script_progression --message="Loading installation settings..."
+
 app=$YNH_APP_INSTANCE_NAME
 
-# We check variables are not empty
+domain=$(ynh_app_setting_get --app=$app --key=domain)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 
-CHECK_VAR () {  # Vérifie que la variable n'est pas vide.
-# $1 = Variable à vérifier
-# $2 = Texte à afficher en cas d'erreur
-        test -n "$1" || (echo "$2" >&2 && false)
-}
-CHECK_VAR "$app" "app name not set"
+#=================================================
+# STANDARD REMOVE
+#=================================================
+# REMOVE APP MAIN DIR
+#=================================================
+ynh_script_progression --message="Removing app main directory..."
 
-path=$(ynh_app_setting_get $app path)
-domain=$(ynh_app_setting_get $app domain)
-final_path=$(ynh_app_setting_get $app final_path)
-finalnginxconf=$(ynh_app_setting_get $app finalnginxconf)
-finalphpconf=$(ynh_app_setting_get $app finalphpconf)
+# Remove the app directory securely
+ynh_secure_remove --file="$final_path"
 
-# Suppression du dossier de la webapp
-sudo rm -rf $final_path
+#=================================================
+# REMOVE NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Removing nginx web server configuration..."
 
-# Suppression de la config nginx de la webapp
-sudo rm -f $finalnginxconf
-sudo rm -f $finalphpconf
+# Remove the dedicated nginx config
+ynh_remove_nginx_config
 
-# We reload the services
-sudo service php5-fpm reload
-sudo service nginx reload
-sudo yunohost app ssowatconf
+#=================================================
+# REMOVE PHP-FPM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Removing php-fpm configuration..."
+
+# Remove the dedicated php-fpm config
+ynh_remove_fpm_config
+
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_script_progression --message="Removal of $app completed"
