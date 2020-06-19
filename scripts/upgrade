@@ -1,84 +1,148 @@
 #!/bin/bash
 
-# We retrieve app parameters
-app=$YNH_APP_INSTANCE_NAME
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
 
-# Backup the current version of the app, restore it if the upgrade fails
-#if sudo yunohost backup list | grep -q ${app}-before-upgrade > /dev/null 2>&1; then	# Supprime l'ancienne archive seulement si elle existe
-#	sudo yunohost backup delete ${app}-before-upgrade
-#fi
-#sudo yunohost backup create --ignore-hooks --apps $app --name ${app}-before-upgrade
-EXIT_PROPERLY () {
-	exit_code=$?
-	if [ "$exit_code" -eq 0 ]; then
-		exit 0	# Quitte sans erreur si le script se termine correctement.
-	fi
-	trap '' EXIT
-	set +eu
-	sudo yunohost app remove $app	# Supprime l'application avant de la restaurer.
-	sudo yunohost backup restore --ignore-hooks ${app}-before-upgrade --apps $app --force	# Restore the backup if upgrade failed
-	ynh_die "Upgrade failed. The app was restored to the way it was before the failed upgrade."
-}
-#set -eu
-#trap EXIT_PROPERLY EXIT
-
-# Source app helpers
+source _common.sh
 source /usr/share/yunohost/helpers
 
-# We check variables are not empty
-CHECK_VAR () {  # Vérifie que la variable n'est pas vide.
-# $1 = Variable à vérifier
-# $2 = Texte à afficher en cas d'erreur
-        test -n "$1" || (echo "$2" >&2 && false)
-}
-CHECK_VAR "$app" "app name not set"
+#=================================================
+# LOAD SETTINGS
+#=================================================
+ynh_script_progression --message="Loading installation settings..."
 
-path=$(ynh_app_setting_get $app path)
-domain=$(ynh_app_setting_get $app domain)
-final_path=$(ynh_app_setting_get $app final_path)
-finalnginxconf=$(ynh_app_setting_get $app finalnginxconf)
-finalphpconf=$(ynh_app_setting_get $app finalphpconf)
+app=$YNH_APP_INSTANCE_NAME
 
-# Removal of old folder and restart from fresh
-sudo rm -rf $final_path
-sudo mkdir -p $final_path
+domain=$(ynh_app_setting_get --app=$app --key=domain)
+path_url=$(ynh_app_setting_get --app=$app --key=path)
+is_public=$(ynh_app_setting_get --app=$app --key=is_public)
+final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 
-# We download the sources and check the md5sum
-SHA1=`sudo cat ../sources/source_sha1`;
-sed -i "s@SHA1TOCHANGE@$SHA1@g" ../sources/source_url
-sed -i "s@SHA1TOCHANGE@$SHA1@g" ../sources/source_md5
-sudo wget -nv -i ../sources/source_url -O framagames-${SHA1}.zip
-sudo md5sum -c ../sources/source_md5 --status || (echo "Corrupt source" >&2 && false)
-sudo unzip framagames-${SHA1}.zip -d ../sources/
-sudo cp -R ../sources/framagames-${SHA1}/* $final_path
+#=================================================
+# CHECK VERSION
+#=================================================
+ynh_script_progression --message="Checking version..."
 
-# Set permissions
-sudo chmod 775 -R $final_path
-sudo chown -hR www-data:www-data $final_path
+upgrade_type=$(ynh_check_app_version_changed)
 
-# Modify Nginx configuration file and copy it to Nginx conf.d directory
-sed -i "s@PATHTOCHANGE@$path@g" ../conf/nginx.conf
-sed -i "s@ALIASTOCHANGE@$final_path/@g" ../conf/nginx.conf
-sed -i "s@NAMETOCHANGE@$app@g" ../conf/nginx.conf
-sudo cp ../conf/nginx.conf $finalnginxconf
+#=================================================
+# ENSURE DOWNWARD COMPATIBILITY
+#=================================================
+ynh_script_progression --message="Ensuring downward compatibility..."
 
-# Modify php-fpm configuration file and copy it to php-fpm pool.d directory
-sed -i "s@NAMETOCHANGE@$app@g" ../conf/php-fpm.conf
-sed -i "s@FOLDERTOCHANGE@$final_path@g" ../conf/php-fpm.conf
-sudo cp ../conf/php-fpm.conf $finalphpconf
-sudo chown root: $finalphpconf
-sudo chmod 644 $finalphpconf
-
-# Make app public if necessary
-is_public=$(ynh_app_setting_get $app is_public)
-if [ "$is_public" = "Yes" ];
-then
-	ynh_app_setting_set $app skipped_uris "/"
-else
-	ynh_app_setting_set $app protected_uris "/"
+# Fix is_public as a boolean value
+if [ "$is_public" = "Yes" ]; then
+	ynh_app_setting_set --app=$app --key=is_public --value=1
+	is_public=1
+elif [ "$is_public" = "No" ]; then
+	ynh_app_setting_set --app=$app --key=is_public --value=0
+	is_public=0
 fi
 
-# Reload Nginx and regenerate SSOwat conf
-sudo service php5-fpm reload
-sudo service nginx reload
-sudo yunohost app ssowatconf
+# If db_name doesn't exist, create it
+if [ -z "$db_name" ]; then
+	db_name=$(ynh_sanitize_dbid --db_name=$app)
+	ynh_app_setting_set --app=$app --key=db_name --value=$db_name
+fi
+
+# If final_path doesn't exist, create it
+if [ -z "$final_path" ]; then
+	final_path=/var/www/$app
+	ynh_app_setting_set --app=$app --key=final_path --value=$final_path
+fi
+
+#=================================================
+# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
+#=================================================
+ynh_script_progression --message="Backing up the app before upgrading (may take a while)..."
+
+# Backup the current version of the app
+ynh_backup_before_upgrade
+ynh_clean_setup () {
+	# restore it if the upgrade fails
+	ynh_restore_upgradebackup
+}
+# Exit if an error occurs during the execution of the script
+ynh_abort_if_errors
+
+#=================================================
+# CHECK THE PATH
+#=================================================
+
+# Normalize the URL path syntax
+# N.B. : this is for app installations before YunoHost 2.7
+# where this value might be something like /foo/ or foo/
+# instead of /foo ....
+# If nobody installed your app before 2.7, then you may
+# safely remove this line
+path_url=$(ynh_normalize_url_path --path_url=$path_url)
+
+#=================================================
+# STANDARD UPGRADE STEPS
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+
+if [ "$upgrade_type" == "UPGRADE_APP" ]
+then
+	ynh_script_progression --message="Upgrading source files..."
+
+	ynh_secure_remove --file="$final_path"
+	# Download, check integrity, uncompress and patch the source from app.src
+	ynh_setup_source --dest_dir="$final_path"
+fi
+
+#=================================================
+# NGINX CONFIGURATION
+#=================================================
+ynh_script_progression --message="Upgrading nginx web server configuration..."
+
+# Create a dedicated nginx config
+ynh_add_nginx_config
+
+#=================================================
+# PHP-FPM CONFIGURATION
+#=================================================
+ynh_script_progression --message="Upgrading php-fpm configuration..."
+
+# Create a dedicated php-fpm config
+ynh_add_fpm_config
+
+#=================================================
+# GENERIC FINALIZATION
+#=================================================
+# SECURE FILES AND DIRECTORIES
+#=================================================
+ynh_script_progression --message="Securing files and directories..."
+
+# Set permissions on app files
+chmod 775 -R $final_path
+chown -hR www-data:www-data $final_path
+
+#=================================================
+# SETUP SSOWAT
+#=================================================
+ynh_script_progression --message="Upgrading SSOwat configuration..."
+
+# Make app public if necessary
+if [ $is_public -eq 1 ]
+then
+	# unprotected_uris allows SSO credentials to be passed anyway
+	ynh_app_setting_set --app=$app --key=unprotected_uris --value="/"
+fi
+
+#=================================================
+# RELOAD NGINX
+#=================================================
+ynh_script_progression --message="Reloading nginx web server..."
+
+ynh_systemd_action --service_name=nginx --action=reload
+
+#=================================================
+# END OF SCRIPT
+#=================================================
+
+ynh_script_progression --message="Upgrade of $app completed"

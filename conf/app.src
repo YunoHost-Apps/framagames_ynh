@@ -1,0 +1,6 @@
+SOURCE_URL=https://framagit.org/framasoft/framagames/-/archive/6808f75cd18f4a1bb0345ce65d055e2dfef8c0b7/framagames-6808f75cd18f4a1bb0345ce65d055e2dfef8c0b7.tar.gz
+SOURCE_SUM=6c2bf60663dad46ac6660ddb3634d1c05dcf38cea1f2687b8ee26743deb8a10e
+SOURCE_SUM_PRG=sha256sum
+SOURCE_FORMAT=tar.gz
+SOURCE_IN_SUBDIR=true
+SOURCE_FILENAME=

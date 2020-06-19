@@ -6,20 +6,21 @@
         "en": "Set of games Framagames from Framasoft",
         "fr": "Ensemble de jeux Framagames venant de Framasoft"
     },
+    "version": "1.0~ynh2",
     "url": "https://github.com/YunoHost-Apps/framagames_ynh",
     "license": "free",
     "maintainer": {
         "name": "polytan02",
         "email": "polytan02@mcgva.org"
     },
+    "requirements": {
+        "yunohost": ">= 3.5"
+    },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php5-fpm"
+        "php7.0-fpm"
     ],
-    "requirements": {
-         "yunohost": ">= 2.4.0"
-    },
     "arguments": {
         "install" : [
             {
@@ -29,7 +30,7 @@
                     "en": "Choose a domain for your framagames",
                     "fr": "Choisissez un domaine pour vos framagames"
                 },
-                "example": "domain.tld"
+                "example": "example.com"
             },
             {
                 "name": "path",
@@ -43,12 +44,12 @@
             },
             {
                 "name": "is_public",
+                "type": "boolean",
                 "ask": {
-                    "en": "Is it a public website ?",
-                    "fr": "Est-ce un site publique ?"
+                    "en": "Is it a public application?",
+                    "fr": "Est-ce une application publique ?"
                 },
-                "choices": ["Yes", "No"],
-                "default": "Yes"
+                "default": true
             }
         ]
     }
