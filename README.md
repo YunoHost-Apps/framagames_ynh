@@ -24,8 +24,7 @@ Set of games from Framagames
 
 ---
 
-Developer info
-----------------
+## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/framagames_ynh/tree/testing).
 
