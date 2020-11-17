@@ -107,7 +107,7 @@ ynh_add_fpm_config
 ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions on app files
-chmod 775 -R $final_path
+chmod -R 775 $final_path
 chown -hR www-data:www-data $final_path
 
 #=================================================
