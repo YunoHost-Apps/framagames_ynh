@@ -8,47 +8,35 @@
     },
     "version": "1.0~ynh3",
     "url": "https://framagit.org/framasoft/framagames",
-    "license": "free",
+    "license": "AGPL-3.0-only",
     "maintainer": {
         "name": "polytan02",
         "email": "polytan02@mcgva.org"
     },
     "requirements": {
-        "yunohost": ">= 4.0.0"
+        "yunohost": ">= 4.1.7"
     },
     "multi_instance": true,
     "services": [
         "nginx",
-        "php7.0-fpm"
+        "php7.3-fpm"
     ],
     "arguments": {
         "install" : [
             {
                 "name": "domain",
                 "type": "domain",
-                "ask": {
-                    "en": "Choose a domain for your Framagames",
-                    "fr": "Choisissez un domaine pour vos Framagames"
-                },
                 "example": "example.com"
             },
             {
                 "name": "path",
                 "type": "path",
-                "ask": {
-                    "en": "Choose a path to access your Framagames",
-                    "fr": "Choisissez un chemin pour acceder à vos Framagames"
-                },
                 "example": "/framagames",
                 "default": "/framagames"
             },
             {
                 "name": "is_public",
                 "type": "boolean",
-                "ask": {
-                    "en": "Is it a public application?",
-                    "fr": "Est-ce une application publique ?"
-                },
                 "default": true
             }
         ]
