@@ -88,7 +88,7 @@ ynh_script_progression --message="Securing files and directories..."
 
 # Set permissions to app files
 chown -R $app:www-data $final_path
-chmod -R 775 $final_path
+chmod 775 $final_path
 
 #=================================================
 # SETUP SSOWAT
@@ -112,4 +112,4 @@ ynh_systemd_action --service_name=nginx --action=reload
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Installation of $app completed" --last
+ynh_script_progression --message="Installation of $app completed"
