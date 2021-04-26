@@ -1,7 +1,7 @@
 # Framagames for YunoHost
 
 [![Integration level](https://dash.yunohost.org/integration/framagames.svg)](https://dash.yunohost.org/appci/app/framagames) ![](https://ci-apps.yunohost.org/ci/badges/framagames.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/framagames.maintain.svg)  
-[![Install Framagames with YunoHost](https://install-app.yunohost.org/install-with-yunohost.png)](https://install-app.yunohost.org/?app=framagames)
+[![Install Framagames with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=framagames)
 
 > *This package allows you to install Framagames quickly and simply on a YunoHost server.  
 If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/install) to learn how to install it.*
@@ -13,8 +13,8 @@ Set of games from Framagames
 
 #### Supported architectures
 
-* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/framagames%20%28Apps%29.svg)](https://ci-apps.yunohost.org/ci/apps/framagames/)
-* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/framagames%20%28Apps%29.svg)](https://ci-apps-arm.yunohost.org/ci/apps/framagames/)
+* x86-64 - [![Build Status](https://ci-apps.yunohost.org/ci/logs/framagames.svg)](https://ci-apps.yunohost.org/ci/apps/framagames/)
+* ARMv8-A - [![Build Status](https://ci-apps-arm.yunohost.org/ci/logs/framagames.svg)](https://ci-apps-arm.yunohost.org/ci/apps/framagames/)
 
 ## Links
 
