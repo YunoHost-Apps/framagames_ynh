@@ -50,7 +50,7 @@ ynh_app_setting_set --app=$app --key=path --value=$path_url
 ynh_script_progression --message="Configuring system user..."
 
 # Create a system user
-ynh_system_user_create --username=$app --path_url=$path_url
+ynh_system_user_create --username=$app --home_dir="$final_path"
 
 #=================================================
 # STANDARD MODIFICATIONS
