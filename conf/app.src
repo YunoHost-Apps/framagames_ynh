@@ -1,5 +1,5 @@
-SOURCE_URL=https://framagit.org/framasoft/framagames/-/archive/6808f75cd18f4a1bb0345ce65d055e2dfef8c0b7/framagames-6808f75cd18f4a1bb0345ce65d055e2dfef8c0b7.tar.gz
-SOURCE_SUM=6c2bf60663dad46ac6660ddb3634d1c05dcf38cea1f2687b8ee26743deb8a10e
+SOURCE_URL=https://framagit.org/framasoft/framagames/-/archive/28d7187aeb01810f672d4a6f9897786f753150f5/framagames-28d7187aeb01810f672d4a6f9897786f753150f5.tar.gz
+SOURCE_SUM=967fe4b73755c8131f788bcdc6b15cc9e3f9779f2efda11b4ec9d033b78c6ae3
 SOURCE_SUM_PRG=sha256sum
 SOURCE_FORMAT=tar.gz
 SOURCE_IN_SUBDIR=true

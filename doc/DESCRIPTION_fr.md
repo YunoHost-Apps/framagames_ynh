@@ -1,0 +1,1 @@
+Framagames est une compilation de jeux libres qui se jouent en ligne ou déconnectés que Framasoft propose sur le site : https://framagames.org
