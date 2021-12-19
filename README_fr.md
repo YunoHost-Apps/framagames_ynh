@@ -11,7 +11,7 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Ensemble de jeux Framagames venant de Framasoft
+Framagames est une compilation de jeux libres qui se jouent en ligne ou déconnectés que Framasoft propose sur le site : https://framagames.org
 
 **Version incluse :** 1.0~ynh3
 
