@@ -15,8 +15,8 @@
     },
     "license": "AGPL-3.0-only",
     "maintainer": {
-        "name": "polytan02",
-        "email": "polytan02@mcgva.org"
+        "name": "",
+        "email": ""
     },
     "requirements": {
         "yunohost": ">= 4.3.0"
