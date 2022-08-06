@@ -6,15 +6,20 @@
         "en": "Set of games Framagames from Framasoft",
         "fr": "Ensemble de jeux Framagames venant de Framasoft"
     },
-    "version": "1.0~ynh3",
+    "version": "1.0~ynh4",
     "url": "https://framagit.org/framasoft/framagames",
+    "upstream": {
+        "license": "AGPL-3.0-only",
+        "website": "https://framagit.org/framasoft/framagames",
+        "code": "https://framagit.org/framasoft/framagames"
+    },
     "license": "AGPL-3.0-only",
     "maintainer": {
-        "name": "polytan02",
-        "email": "polytan02@mcgva.org"
+        "name": "",
+        "email": ""
     },
     "requirements": {
-        "yunohost": ">= 4.1.7"
+        "yunohost": ">= 4.3.0"
     },
     "multi_instance": true,
     "services": [
@@ -22,11 +27,10 @@
         "php7.3-fpm"
     ],
     "arguments": {
-        "install" : [
+        "install": [
             {
                 "name": "domain",
-                "type": "domain",
-                "example": "example.com"
+                "type": "domain"
             },
             {
                 "name": "path",
