@@ -19,7 +19,6 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 Set of games Framagames from Framasoft
 
 **Shipped version:** 1.0~ynh4
-
 ## Documentation and resources
 
 * Official app website: <https://framagit.org/framasoft/framagames>
