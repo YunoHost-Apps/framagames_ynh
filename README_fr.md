@@ -5,15 +5,16 @@ It shall NOT be edited by hand.
 
 # Framagames pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/framagames.svg)](https://dash.yunohost.org/appci/app/framagames) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/framagames.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/framagames.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/framagames.svg)](https://dash.yunohost.org/appci/app/framagames) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/framagames.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/framagames.maintain.svg)
+
 [![Installer Framagames avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=framagames)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Framagames rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Framagames rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Set of games from Framagames
 
@@ -21,8 +22,8 @@ Set of games from Framagames
 **Version incluse :** 1.0~ynh4
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://framagit.org/framasoft/framagames>
-* Dépôt de code officiel de l'app : <https://framagit.org/framasoft/framagames>
+* Site officiel de l’app : <https://framagit.org/framasoft/framagames>
+* Dépôt de code officiel de l’app : <https://framagit.org/framasoft/framagames>
 * Documentation YunoHost pour cette app : <https://yunohost.org/app_framagames>
 * Signaler un bug : <https://github.com/YunoHost-Apps/framagames_ynh/issues>
 
@@ -38,4 +39,4 @@ ou
 sudo yunohost app upgrade framagames -u https://github.com/YunoHost-Apps/framagames_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
