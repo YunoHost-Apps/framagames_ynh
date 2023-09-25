@@ -16,8 +16,7 @@ Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) po
 
 ## Vue d’ensemble
 
-Set of games from Framagames
-
+Ensemble de jeux Framagames venant de Framasoft
 
 **Version incluse :** 1.0~ynh4
 ## Documentations et ressources
