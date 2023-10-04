@@ -4,10 +4,10 @@
 # COMMON VARIABLES
 #=================================================
 
-phpversion="7.3"
+#REMOVEME? phpversion="7.3"
 
 # dependencies used by the app
-pkg_dependencies="php$phpversion-fpm"
+#REMOVEME? pkg_dependencies="php$phpversion-fpm"
 
 #=================================================
 # PERSONAL HELPERS
