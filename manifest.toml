@@ -1,0 +1,54 @@
+packaging_format = 2
+
+id = "framagames"
+name = "Framagames"
+description.en = "Set of games Framagames from Framasoft"
+description.fr = "Ensemble de jeux Framagames venant de Framasoft"
+
+version = "1.0~ynh4"
+
+maintainers = []
+
+[upstream]
+license = "AGPL-3.0-only"
+website = "https://framagit.org/framasoft/framagames"
+code = "https://framagit.org/framasoft/framagames"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+ldap = false
+sso = false
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/framagames"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
+
+[resources]
+
+        [resources.sources.main]
+
+        url = "https://framagit.org/framasoft/framagames/-/archive/6808f75cd18f4a1bb0345ce65d055e2dfef8c0b7/framagames-6808f75cd18f4a1bb0345ce65d055e2dfef8c0b7.tar.gz"
+        sha256 = "6c2bf60663dad46ac6660ddb3634d1c05dcf38cea1f2687b8ee26743deb8a10e"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.permissions]
+    main.url = "/"
+
+    [resources.apt]
+    packages = "php8.2-fpm"

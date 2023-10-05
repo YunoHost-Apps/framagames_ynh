@@ -16,14 +16,13 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-Set of games Framagames from Framasoft
+Set of games Framagames from Framasoft.
 
 **Shipped version:** 1.0~ynh4
 ## Documentation and resources
 
 * Official app website: <https://framagit.org/framasoft/framagames>
 * Upstream app code repository: <https://framagit.org/framasoft/framagames>
-* YunoHost documentation for this app: <https://yunohost.org/app_framagames>
 * Report a bug: <https://github.com/YunoHost-Apps/framagames_ynh/issues>
 
 ## Developer info
