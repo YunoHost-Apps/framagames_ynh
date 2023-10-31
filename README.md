@@ -23,6 +23,7 @@ Set of games Framagames from Framasoft.
 
 * Official app website: <https://framagit.org/framasoft/framagames>
 * Upstream app code repository: <https://framagit.org/framasoft/framagames>
+* YunoHost Store: <https://apps.yunohost.org/app/framagames>
 * Report a bug: <https://github.com/YunoHost-Apps/framagames_ynh/issues>
 
 ## Developer info
