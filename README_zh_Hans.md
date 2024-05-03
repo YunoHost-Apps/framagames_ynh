@@ -18,7 +18,7 @@
 
 Set of games Framagames from Framasoft.
 
-**分发版本：** 1.0~ynh5
+**分发版本：** 2022.12.28~ynh1
 ## 文档与资源
 
 - 官方应用网站： <https://framagit.org/framasoft/framagames>
