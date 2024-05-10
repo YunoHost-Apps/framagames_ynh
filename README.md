@@ -18,7 +18,7 @@ It shall NOT be edited by hand.
 
 Set of games Framagames from Framasoft.
 
-**Shipped version:** 1.0~ynh5
+**Shipped version:** 2022.12.28~ynh1
 ## Documentation and resources
 
 - Official app website: <https://framagit.org/framasoft/framagames>
