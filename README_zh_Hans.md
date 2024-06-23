@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 Framagames
+# YunoHost 上的 Framagames
 
 [![集成程度](https://dash.yunohost.org/integration/framagames.svg)](https://dash.yunohost.org/appci/app/framagames) ![工作状态](https://ci-apps.yunohost.org/ci/badges/framagames.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/framagames.maintain.svg)
 
