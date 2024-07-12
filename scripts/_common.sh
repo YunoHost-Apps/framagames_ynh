@@ -29,7 +29,7 @@ _build_install_framagames() {
 
     mv -f "$install_dir/sources/dist" "$install_dir/www"
     mv -f "$install_dir/sources/games/"* "$install_dir/www"
-    cp "$install_dir/www/fr/index.html" "$install_dir/www/index.html"
+    # cp "$install_dir/www/fr/index.html" "$install_dir/www/index.html"
     # cd public && for f in $(find -type l);do cp --remove-destination $(readlink -f $f) $f;done;
 }
 
