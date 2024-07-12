@@ -8,23 +8,43 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# INSTALL NODEJS
+#=================================================
+ynh_script_progression --message="Installing NodeJS..." --weight=1
+
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version="$nodejs_version"
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..."
 
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir"
+ynh_setup_source --dest_dir="$install_dir/sources"
 
 chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
-# PHP-FPM CONFIGURATION
+# BUILD APP
+#=================================================
+ynh_script_progression --message="Building $app..."
+
+pushd "$install_dir/sources"
+    ynh_use_nodejs
+    ynh_exec_warn_less ynh_exec_as "$app" env "$ynh_node_load_PATH" "$ynh_npm" run commons
+    ynh_exec_warn_less ynh_exec_as "$app" env "$ynh_node_load_PATH" "$ynh_npm" run prod
+popd
+
+mv -f "$install_dir/sources/dist" "$install_dir/www"
+mv -f "$install_dir/sources/games/"* "$install_dir/www"
+cp "$install_dir/www/fr/index.html" "$install_dir/www/index.html"
+# cd public && for f in $(find -type l);do cp --remove-destination $(readlink -f $f) $f;done;
+
+#=================================================
+# SYSTEM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
-
-# Create a dedicated PHP-FPM config
-ynh_add_fpm_config
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config

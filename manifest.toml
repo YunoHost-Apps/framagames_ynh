@@ -1,3 +1,5 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
 packaging_format = 2
 
 id = "framagames"
@@ -38,11 +40,11 @@ ram.runtime = "50M"
 
 [resources]
 
-        [resources.sources.main]
+    [resources.sources.main]
+    url = "https://framagit.org/framasoft/framagames/-/archive/5510754d92e9649aa1808ffb1d3255d5da1ebf47/framagames-5510754d92e9649aa1808ffb1d3255d5da1ebf47.tar.bz2"
+    sha256 = "3a58583fd0e7a7b81d4b2db0ff04a588eb0a04c574f0f36d681a2969e6648e9d"
 
-        url = "https://framagit.org/framasoft/framagames/-/archive/5510754d92e9649aa1808ffb1d3255d5da1ebf47/framagames-5510754d92e9649aa1808ffb1d3255d5da1ebf47.tar.bz2"
-        sha256 = "3a58583fd0e7a7b81d4b2db0ff04a588eb0a04c574f0f36d681a2969e6648e9d"
-        autoupdate.strategy = "latest_gitlab_commit"
+    autoupdate.strategy = "latest_gitlab_commit"
 
     [resources.system_user]
 
@@ -50,6 +52,3 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
-
-    [resources.apt]
-    packages = "php8.2-fpm"
