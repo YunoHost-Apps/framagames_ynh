@@ -35,7 +35,9 @@ _build_install_framagames() {
     ynh_secure_remove --file="$install_dir/www"
     mv -f "$install_dir/sources/dist" "$install_dir/www"
     cp -r "$install_dir/sources/games/"* "$install_dir/www"
-    mv -f "$install_dir/www/framagames/"* "$install_dir/www"
+    if [[ "$path" != "/" ]]; then
+        mv -f "$install_dir/www/$path/"* "$install_dir/www"
+    fi
 }
 
 #=================================================
