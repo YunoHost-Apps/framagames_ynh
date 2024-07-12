@@ -31,6 +31,7 @@ _build_install_framagames() {
         ynh_exec_warn_less ynh_exec_as "$app" env "$ynh_node_load_PATH" "$ynh_npm" run prod
     popd
 
+    ynh_secure_remove --file="$install_dir/www"
     mv -f "$install_dir/sources/dist" "$install_dir/www"
     mv -f "$install_dir/sources/games/"* "$install_dir/www"
     mv -f "$install_dir/www/framagames/"* "$install_dir/www"
