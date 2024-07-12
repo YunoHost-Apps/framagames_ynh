@@ -19,9 +19,10 @@ _configure_framagames() {
         --match_string="framanav: true" \
         --replace_string="framanav: false"
 
+    # %/ is here to prevent double slash
     ynh_replace_string --target_file="$install_dir/sources/config/env.js" \
         --match_string=": '/'," \
-        --replace_string=": '$path/',"
+        --replace_string=": '${path%/}/',"
 }
 
 _build_install_framagames() {
