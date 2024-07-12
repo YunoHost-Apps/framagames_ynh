@@ -15,6 +15,10 @@ _configure_framagames() {
         --match_string="canonical: .*" \
         --replace_string="canonical: https://$domain$path"
 
+    ynh_replace_string --target_file="$install_dir/sources/src/data/main.yml" \
+        --match_string="framanav: true" \
+        --replace_string="framanav: false"
+
     ynh_replace_string --target_file="$install_dir/sources/config/env.js" \
         --match_string=": '/'," \
         --replace_string=": '$path/',"
@@ -29,8 +33,7 @@ _build_install_framagames() {
 
     mv -f "$install_dir/sources/dist" "$install_dir/www"
     mv -f "$install_dir/sources/games/"* "$install_dir/www"
-    # cp "$install_dir/www/fr/index.html" "$install_dir/www/index.html"
-    # cd public && for f in $(find -type l);do cp --remove-destination $(readlink -f $f) $f;done;
+    mv -f "$install_dir/www/framagames/"* "$install_dir/www"
 }
 
 #=================================================
