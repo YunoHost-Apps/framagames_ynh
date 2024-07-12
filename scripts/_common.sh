@@ -38,6 +38,7 @@ _build_install_framagames() {
     if [[ "$path" != "/" ]]; then
         mv -f "$install_dir/www/$path/"* "$install_dir/www"
     fi
+    chown -R "$app:www-data" "$install_dir"
 }
 
 #=================================================
