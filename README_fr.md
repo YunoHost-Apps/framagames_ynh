@@ -5,7 +5,7 @@ Il NE doit PAS être modifié à la main.
 
 # Framagames pour YunoHost
 
-[![Niveau d’intégration](https://dash.yunohost.org/integration/framagames.svg)](https://dash.yunohost.org/appci/app/framagames) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/framagames.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/framagames.maintain.svg)
+[![Niveau d’intégration](https://dash.yunohost.org/integration/framagames.svg)](https://ci-apps.yunohost.org/ci/apps/framagames/) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/framagames.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/framagames.maintain.svg)
 
 [![Installer Framagames avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=framagames)
 
@@ -18,7 +18,7 @@ Il NE doit PAS être modifié à la main.
 
 Set of games Framagames from Framasoft.
 
-**Version incluse :** 1.0~ynh5
+**Version incluse :** 2022.12.28~ynh1
 ## Documentations et ressources
 
 - Site officiel de l’app : <https://framagit.org/framasoft/framagames>
