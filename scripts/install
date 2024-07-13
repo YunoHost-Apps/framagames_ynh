@@ -8,23 +8,41 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# INSTALL NODEJS
+#=================================================
+ynh_script_progression --message="Installing NodeJS..." --weight=1
+
+ynh_exec_warn_less ynh_install_nodejs --nodejs_version="$nodejs_version"
+
+#=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
 ynh_script_progression --message="Setting up source files..."
 
 # Download, check integrity, uncompress and patch the source from app.src
-ynh_setup_source --dest_dir="$install_dir"
+ynh_setup_source --dest_dir="$install_dir/sources"
 
 chmod -R o-rwx "$install_dir"
-chown -R $app:www-data "$install_dir"
+chown -R "$app:www-data" "$install_dir"
 
 #=================================================
-# PHP-FPM CONFIGURATION
+# CONFIGURE APP
+#=================================================
+ynh_script_progression --message="Configuring $app..."
+
+_configure_framagames
+
+#=================================================
+# BUILD APP
+#=================================================
+ynh_script_progression --message="Building $app..."
+
+_build_install_framagames
+
+#=================================================
+# SYSTEM CONFIGURATION
 #=================================================
 ynh_script_progression --message="Adding system configurations related to $app..." --weight=1
-
-# Create a dedicated PHP-FPM config
-ynh_add_fpm_config
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
