@@ -18,7 +18,7 @@ EZ editatu eskuz.
 
 Set of games Framagames from Framasoft.
 
-**Paketatutako bertsioa:** 2022.12.28~ynh1
+**Paketatutako bertsioa:** 2024.10.03~ynh1
 ## Dokumentazioa eta baliabideak
 
 - Aplikazioaren webgune ofiziala: <https://framagit.org/framasoft/framagames>
