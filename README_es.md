@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # Framagames para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/framagames.svg)](https://ci-apps.yunohost.org/ci/apps/framagames/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/framagames.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/framagames.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/framagames)](https://ci-apps.yunohost.org/ci/apps/framagames/)
+![Estado funcional](https://apps.yunohost.org/badge/state/framagames)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/framagames)
 
 [![Instalar Framagames con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=framagames)
 
@@ -18,7 +20,7 @@ No se debe editar a mano.
 
 Set of games Framagames from Framasoft.
 
-**Versión actual:** 2022.12.28~ynh1
+**Versión actual:** 2024.10.03~ynh1
 ## Documentaciones y recursos
 
 - Sitio web oficial: <https://framagit.org/framasoft/framagames>
@@ -28,7 +30,7 @@ Set of games Framagames from Framasoft.
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/framagames_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/framagames_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
