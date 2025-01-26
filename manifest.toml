@@ -7,7 +7,7 @@ name = "Framagames"
 description.en = "Set of games Framagames from Framasoft"
 description.fr = "Ensemble de jeux Framagames venant de Framasoft"
 
-version = "2022.12.28~ynh1"
+version = "2024.10.03~ynh1"
 
 maintainers = []
 
@@ -41,8 +41,8 @@ ram.runtime = "50M"
 [resources]
 
     [resources.sources.main]
-    url = "https://framagit.org/framasoft/framagames/-/archive/5510754d92e9649aa1808ffb1d3255d5da1ebf47/framagames-5510754d92e9649aa1808ffb1d3255d5da1ebf47.tar.bz2"
-    sha256 = "3a58583fd0e7a7b81d4b2db0ff04a588eb0a04c574f0f36d681a2969e6648e9d"
+    url = "https://framagit.org/framasoft/framagames/-/archive/0678e461cd74524af256fec3aa2f4f5c71002881/framagames-0678e461cd74524af256fec3aa2f4f5c71002881.tar.bz2"
+    sha256 = "e3295ef2dcc96179a14d35d01ec5c275d7b6df421f55f64b1ebb6d8c99687a62"
 
     autoupdate.strategy = "latest_gitlab_commit"
 
