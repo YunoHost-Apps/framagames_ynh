@@ -7,7 +7,7 @@ name = "Framagames"
 description.en = "Set of games Framagames from Framasoft"
 description.fr = "Ensemble de jeux Framagames venant de Framasoft"
 
-version = "2024.10.03~ynh1"
+version = "2025.05.02~ynh1"
 
 maintainers = []
 
@@ -17,7 +17,8 @@ website = "https://framagit.org/framasoft/framagames"
 code = "https://framagit.org/framasoft/framagames"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.18"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
 ldap = false
@@ -41,14 +42,15 @@ ram.runtime = "50M"
 [resources]
 
     [resources.sources.main]
-    url = "https://framagit.org/framasoft/framagames/-/archive/0678e461cd74524af256fec3aa2f4f5c71002881/framagames-0678e461cd74524af256fec3aa2f4f5c71002881.tar.bz2"
-    sha256 = "e3295ef2dcc96179a14d35d01ec5c275d7b6df421f55f64b1ebb6d8c99687a62"
+    url = "https://framagit.org/framasoft/framagames/-/archive/30f98b29f27e541356ccacb30ebae624188a0b70/framagames-30f98b29f27e541356ccacb30ebae624188a0b70.tar.bz2"
+    sha256 = "3c12206348a5d376bc80e406fa27e273574ea12ae9135850f51745874edfc9eb"
 
     autoupdate.strategy = "latest_gitlab_commit"
 
     [resources.system_user]
 
     [resources.install_dir]
+    group = "www-data:r-x"
 
     [resources.permissions]
     main.url = "/"
