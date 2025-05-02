@@ -8,23 +8,30 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
+# INSTALL NODEJS
+#=================================================
+ynh_script_progression "Installing NodeJS..."
+
+ynh_nodejs_install
+
+#=================================================
 # MODIFY URL IN NGINX CONF
 #=================================================
-ynh_script_progression --message="Updating NGINX web server configuration..."
+ynh_script_progression "Updating NGINX web server configuration..."
 
-ynh_change_url_nginx_config
+ynh_config_change_url_nginx
 
 #=================================================
 # CONFIGURE APP
 #=================================================
-ynh_script_progression --message="Configuring $app..."
+ynh_script_progression "Configuring $app..."
 
 _configure_framagames
 
 #=================================================
 # BUILD APP
 #=================================================
-ynh_script_progression --message="Building $app..."
+ynh_script_progression "Building $app..."
 
 _build_install_framagames
 
@@ -32,4 +39,4 @@ _build_install_framagames
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Change of URL completed for $app"
+ynh_script_progression "Change of URL completed for $app"
