@@ -4,7 +4,7 @@
 # COMMON VARIABLES AND CUSTOM HELPERS
 #=================================================
 
-nodejs_version=16
+#REMOVEME? nodejs_version=16
 
 _configure_framagames() {
     ynh_replace --file="$install_dir/sources/src/data/main.yml" \
