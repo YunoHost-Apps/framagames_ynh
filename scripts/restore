@@ -13,7 +13,7 @@ source /usr/share/yunohost/helpers
 #=================================================
 ynh_script_progression "Restoring NodeJS..."
 
-ynh_nodejs_install
+#REMOVEME? ynh_nodejs_install
 
 #=================================================
 # RESTORE THE APP MAIN DIR

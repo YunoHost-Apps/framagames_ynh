@@ -10,9 +10,9 @@ source /usr/share/yunohost/helpers
 #=================================================
 # INSTALL NODEJS
 #=================================================
-ynh_script_progression "Updating NodeJS..."
+#REMOVEME? ynh_script_progression "Updating NodeJS..."
 
-ynh_nodejs_install
+#REMOVEME? ynh_nodejs_install
 
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
